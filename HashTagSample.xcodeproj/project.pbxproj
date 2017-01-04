@@ -12,6 +12,8 @@
 		C5374C341E1DA4B900014AA9 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C5374C321E1DA4B900014AA9 /* Main.storyboard */; };
 		C5374C361E1DA4B900014AA9 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C5374C351E1DA4B900014AA9 /* Assets.xcassets */; };
 		C5374C391E1DA4B900014AA9 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C5374C371E1DA4B900014AA9 /* LaunchScreen.storyboard */; };
+		C5374C411E1DA70000014AA9 /* readme.md in Sources */ = {isa = PBXBuildFile; fileRef = C5374C401E1DA70000014AA9 /* readme.md */; };
+		C5374C431E1DA77100014AA9 /* screenshot.png in Resources */ = {isa = PBXBuildFile; fileRef = C5374C421E1DA77100014AA9 /* screenshot.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -22,6 +24,8 @@
 		C5374C351E1DA4B900014AA9 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		C5374C381E1DA4B900014AA9 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		C5374C3A1E1DA4B900014AA9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		C5374C401E1DA70000014AA9 /* readme.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = readme.md; sourceTree = "<group>"; };
+		C5374C421E1DA77100014AA9 /* screenshot.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = screenshot.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -38,6 +42,8 @@
 		C5374C221E1DA4B900014AA9 = {
 			isa = PBXGroup;
 			children = (
+				C5374C421E1DA77100014AA9 /* screenshot.png */,
+				C5374C401E1DA70000014AA9 /* readme.md */,
 				C5374C2D1E1DA4B900014AA9 /* HashTagSample */,
 				C5374C2C1E1DA4B900014AA9 /* Products */,
 			);
@@ -127,6 +133,7 @@
 				C5374C391E1DA4B900014AA9 /* LaunchScreen.storyboard in Resources */,
 				C5374C361E1DA4B900014AA9 /* Assets.xcassets in Resources */,
 				C5374C341E1DA4B900014AA9 /* Main.storyboard in Resources */,
+				C5374C431E1DA77100014AA9 /* screenshot.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -138,6 +145,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				C5374C311E1DA4B900014AA9 /* ViewController.swift in Sources */,
+				C5374C411E1DA70000014AA9 /* readme.md in Sources */,
 				C5374C2F1E1DA4B900014AA9 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
