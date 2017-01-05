@@ -18,32 +18,29 @@ class ViewController: UIViewController, UITextViewDelegate {
         textView.isSelectable = true
         textView.isEditable = false
         textView.delegate = self
+        textView.dataDetectorTypes = .all
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-
     
     @available(iOS 10.0, *)
-    func textView(_ textView: UITextView, shouldInteractWith URL: URL, in characterRange: NSRange, interaction: UITextItemInteraction) -> Bool {
-        return true
-    }
-    
-    @available(iOS 10.0, *)
-    func textView(_ textView: UITextView, shouldInteractWith textAttachment: NSTextAttachment, in characterRange: NSRange, interaction: UITextItemInteraction) -> Bool {
-        return true
+     func textView(_ textView: UITextView, shouldInteractWith URL: URL, in characterRange: NSRange, interaction: UITextItemInteraction) -> Bool {
+        if let str = URL.absoluteString.removingPercentEncoding {
+            let alert = UIAlertController.singleBtnAlertWithTitle("押したよ！", message: str, action: {})
+            self.present(alert, animated: true, completion: {})
+        }
+        return false
     }
     
     func textView(_ textView: UITextView, shouldInteractWith URL: URL, in characterRange: NSRange) -> Bool {
-        return true
+        let alert = UIAlertController.singleBtnAlertWithTitle("押したよ！", message: URL.absoluteString, action: {})
+        self.present(alert, animated: true, completion: {})
+        return false
     }
-    
-    func textView(_ textView: UITextView, shouldInteractWith textAttachment: NSTextAttachment, in characterRange: NSRange) -> Bool {
-        return true
-    }
-    
+
 }
 
 //http://stackoverflow.com/questions/34294064/how-to-make-uitextview-detect-hashtags
@@ -83,20 +80,13 @@ extension UITextView {
                 // drop the hashtag
                 stringifiedWord = String(stringifiedWord.characters.dropFirst())
                 
-                // check to see if the hashtag has numbers.
-                // ribl is "#1" shouldn't be considered a hashtag.
-                //MARK:数字も許可するようになりました。12/09/2016
-                //                let digits = NSCharacterSet.decimalDigits
-                //                if let _ = stringifiedWord.rangeOfCharacter(from: digits) {
-                //                    // hashtag contains a number, like "#1"
-                //                    // so don't make it clickable
-                //                } else {
-                //                    // set a link for when the user clicks on this word.
-                //                    // it's not enough to use the word "hash", but you need the url scheme syntax "hash://"
-                //                    // note:  since it's a URL now, the color is set to the project's tint color
-                attrString.addAttribute(NSLinkAttributeName, value: "hash:\(stringifiedWord)", range: matchRange)
-                //                }
-                
+    
+                if let stringURL =  "hash:\(stringifiedWord)".addingPercentEncoding( withAllowedCharacters: .urlQueryAllowed) {
+                    if let url = NSURL(string: stringURL) {
+                        attrString.addAttribute(NSLinkAttributeName, value:url , range: matchRange)
+                    }
+                }
+
             }
         }
         
@@ -107,5 +97,23 @@ extension UITextView {
         self.attributedText = attrString
     }
     
+}
+
+extension UIAlertController {
+    
+    class func singleBtnAlertWithTitle(_ title: String,
+                                       message: String,
+                                       action: (() -> Void)) -> UIAlertController {
+        let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "OK", style: .default, handler: {
+            (action:UIAlertAction!) -> Void in
+            if let completion = action {
+                completion
+            }
+        }))
+        
+        return alert
+    }
+
 }
 
